@@ -17,7 +17,8 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/login-post",
+        // "http://localhost:3000/login-post",
+        "https://ecommerce-jwt-api.onrender.com/login-post",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );

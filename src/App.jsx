@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Product from './pages/Product'
+import NotFound from './pages/NotFound'
 
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -26,6 +27,7 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
 
       <Footer />

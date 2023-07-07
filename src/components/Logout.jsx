@@ -7,7 +7,7 @@ const LogoutButton = () => {
   const handleLogout = () => {
     // Clear authentication state and remove tokens or credentials
     // For example, clear the JWT cookie
-    console.log('logout triggered!')
+    // console.log('logout triggered!')
     Cookies.remove("jwt");
 
     // Redirect to the login page

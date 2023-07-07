@@ -13,7 +13,8 @@ function Signup() {
     const password = e.target.password.value;
     try {
       const resp = await axios.post(
-        "http://localhost:3000/signup-post",
+        // "http://localhost:3000/signup-post",
+        "https://ecommerce-jwt-api.onrender.com/signup-post",
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
