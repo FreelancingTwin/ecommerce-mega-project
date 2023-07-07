@@ -20,11 +20,11 @@ function Header() {
           </Link>
         </li>
 
-        {auth && (
           <li className="bg-red-400 px-4 py-1 rounded-md">
+        {auth && (
             <LogoutButton />
+            )}
           </li>
-        )}
       </ul>
     </nav>
   );
