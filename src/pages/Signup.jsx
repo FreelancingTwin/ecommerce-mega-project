@@ -4,13 +4,15 @@ import { useState } from "react";
 import {Link, useNavigate} from 'react-router-dom'
 
 function Signup() {
-  const navigate = useNavigate()
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   async function handleSubmit(e) {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    setEmailError('')
+    setPasswordError('')
     try {
       const resp = await axios.post(
         // "http://localhost:3000/signup-post",
@@ -19,13 +21,16 @@ function Signup() {
         { headers: { "Content-Type": "application/json" } }
       );
       // const data = await JSON.stringify({...resp})
-      // console.log("data", resp.data);
-      await Cookies.set("jwt", resp.data.jwt, { httpOnly: true, expires: 7 });
+      console.log("data", resp.data);
+      console.log("jwt", resp.data.jwt);
+      const jwtToken = resp.data.jwt;
+      Cookies.set("jwt", jwtToken, { httpOnly: true, expires: 70000 });
+
       window.location.href = "/";
       // navigate('/')
 
     } catch (error) {
-      console.log(error.response.data.errors);
+      console.log(error);
       const errorMessage = error.response.data.errors;
       setEmailError(errorMessage.email);
       setPasswordError(errorMessage.password);
@@ -48,6 +53,11 @@ function Signup() {
       <div className="text-red-500">{passwordError}</div>
       <button type="submit" className="bg-blue-400 p-4 px-8 rounded-md text-center">Sign up</button>
     </form>
+    <div className="text-start ">
+        <h1>Signup doesn't work? try login:</h1>
+      <p>email: g@g.com</p>
+        <p>password: qwertuiop</p>
+      </div>
   </div>
   );
 }
