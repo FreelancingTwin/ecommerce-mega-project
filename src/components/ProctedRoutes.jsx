@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const ProtectedRoutes = () => {
   const auth = Cookies.get('jwt')
-  console.log('PROCTEDROUTES', auth)
+  // console.log('PROCTEDROUTES', auth)
   return(
       auth && auth !== "" ? <Outlet/> : <Navigate to="/signup" />
   )
