@@ -3,9 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchData } from "../actions/productsActions";
 import { addToCart } from "../actions/cartActions";
+
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 import {Link} from 'react-router-dom'
+import {motion} from 'framer-motion'
+
 
 function ProductDetails() {
   const { productId } = useParams();
@@ -30,28 +37,43 @@ function ProductDetails() {
   }, [dispatch, productsObj]);
 
   let product =
-    productsObj && productsObj.products.filter(p => p.id === Number(productId));
+    productsObj && productsObj.length !== 0 ? productsObj.products.filter(p => p.id === Number(productId)) : null;
 
-  product && console.log("PRODUCT", product);
+  // product && console.log("PRODUCT", product);
 
   if (!product) {
     return <div>Product not found.</div>;
   }
 
   return (
-    <div>
-      <h1 className="m-4 ">Product Details</h1>
+    <motion.div
+    // initial={{ opacity: 0}}
+    // animate={{ opacity: 1}}
+    // exit={{ opacity: 0 }}
+     className="bg-black text-white"
+     
+     >
+      <h1 className="p-4">Product Details:</h1>
       {product[0].images && (
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          loop="true"
-          autoplay={{ delay: 2000, disableOnInteraction: true }}
-          // Add more Swiper configuration options as needed
-        >
+       <Swiper
+       // install Swiper modules
+       modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+       autoHeight={true}
+       spaceBetween={50}
+       slidesPerView={1}
+       navigation
+    //    pagination={{ clickable: true, type: 'fraction' 
+    //  }}
+       loop={true}
+      //  scrollbar={{ draggable: true }}
+       onSwiper={(swiper) => console.log(swiper)}
+       onSlideChange={() => console.log('slide change')}
+       className=""
+       autoplay={{
+        delay: 2500,
+        disableOnInteraction: true,
+      }}
+     >
           {product[0].images.map((image, idx) => (
             <SwiperSlide
               key={idx}
@@ -60,7 +82,7 @@ function ProductDetails() {
               <img
                 src={image}
                 alt={idx}
-                className="object-cover m-auto rounded-lg "
+                className="object-cover m-auto rounded-lg mb-4"
               />
             </SwiperSlide>
           ))}
@@ -68,25 +90,27 @@ function ProductDetails() {
         </Swiper>
       )}
       {/* <img src={product[0].thumbnail} alt={product[0].title} /> */}
-      <div className="m-4">
-        <p>Title: {product[0].title}</p>
-        <p>Brand: {product[0].brand}</p>
-        <p>Description: {product[0].description}</p>
-        <p>Price: {product[0].price}</p>
-        <p>Rating: {product[0].rating}</p>
+      <div className="mx-4">
+        <p className="font-black text-2xl text-center">{product[0].title}</p>
+        <p><span className="opacity-70">Brand: </span>{product[0].brand}</p>
+        <p><span className="opacity-70">Description: </span>{product[0].description}</p>
+        <p><span className="opacity-70">Price: </span>${product[0].price}</p>
+        <p><span className="opacity-70">Rating: </span> {product[0].rating}</p>
       </div>
+<div className='flex justify-center p-4'>
 
       <button
         onClick={() => dispatch(addToCart(product))}
-        className="m-4 bg-yellow-500 p-2 rounded-full text-black-400"
-      >
+        className="bg-yellow-500 p-2 rounded-full text-black-400"
+        >
           <Link to="/cart">
 
         Add to Cart
           </Link>
       </button>
+        </div>
       
-    </div>
+    </motion.div>
   );
 }
 
