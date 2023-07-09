@@ -5,7 +5,7 @@ const cartReducer = (state = [], action) => {
     case ADD_TO_CART:
       return [...state, action.payload];
     case REMOVE_FROM_CART:
-      return state.filter(product => product.id !== action.payload);
+        return state.filter(product => product[0].id !== action.payload)
     default:
       return state;
   }

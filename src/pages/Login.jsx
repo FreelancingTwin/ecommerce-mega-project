@@ -1,11 +1,25 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addJwt } from "../actions/authActions";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import {motion} from 'framer-motion'
+
 
 function Login() {
+  const [loginButtonText, setLoginButtonText] = useState("Login");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const authState = useSelector(state => state.auth);
+  const authState = Cookies.get('jwt')
+  console.log('AUTHSTATE', authState)
+
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -14,6 +28,8 @@ function Login() {
 
     setEmailError("");
     setPasswordError("");
+    setIsLoading(true);
+    setLoginButtonText(<AiOutlineLoading3Quarters className="animate-spin" />);
 
     try {
       const response = await axios.post(
@@ -24,13 +40,17 @@ function Login() {
       );
 
       const jwtToken = response.data.jwt;
-      Cookies.set("jwt", jwtToken, { expires: 7, secure: true });
+      dispatch(addJwt(jwtToken));
+      console.log("LOGIN");
+      Cookies.set("jwt", jwtToken, { expires: 7, secure: true});
 
       // console.log("JWT:", jwtToken);
       console.log("Cookies set");
 
       // Redirect or perform any necessary actions
-      window.location.href = "/";
+      // window.location.href = "/";
+      navigate("/");
+      // navigate("/", {replace: true});
     } catch (error) {
       console.log(error);
 
@@ -39,13 +59,22 @@ function Login() {
         setEmailError(email);
         setPasswordError(password);
       }
+    } finally {
+      setLoginButtonText("Login");
+      setIsLoading(false);
     }
   };
 
+
   return (
-    <div className="min-h-[82vh] max-w-screen p-4 flex items-center justify-center flex-col">
+
+    <motion.div className="min-h-[70vh] max-w-screen p-4 flex items-center justify-center flex-col bg-black text-balck" 
+    // initial={{ opacity: 0}}
+    // animate={{ opacity: 1}}
+    // exit={{ opacity: 0 }}
+    >
       <div className="flex justify-center w-screen gap-20">
-        <h1 className="text-2xl">Login</h1>
+        <h1 className="text-2xl text-white">Login</h1>
 
         <Link to="/signup">
           <h1 className="text-2xl text-gray-500 opacity-80 hover:text-white hover:opacity-100 transition-3 transition-all duration-200">
@@ -56,7 +85,7 @@ function Login() {
 
       <form
         onSubmit={handleSubmit}
-        className="shadow w-fit flex flex-col justify-center items-center"
+        className="w-fit flex flex-col justify-center items-center"
       >
         <input
           type="email"
@@ -74,18 +103,22 @@ function Login() {
         <div className="text-red-500">{passwordError}</div>
         <button
           type="submit"
-          className="bg-teal-200 p-4 px-8 rounded-md text-center"
+          className="bg-teal-200 p-4 px-8 rounded-md text-center text-black mb-3"
         >
-          Login
+          {loginButtonText}
         </button>
       </form>
 
-      <div className="text-start ">
+      {/* <div className="text-start mt-2">
         <h1>Signup doesn't work? try login:</h1>
         <p>email: g@g.com</p>
-        <p>password: qwertuiop</p>
+        <p>password: qwertyuiop</p>
+      </div> */}
+      <div>
+        <p className="text-white text-sm italic">*Free server by render, sometimes takes upto 15 seconds to fire up for the first time and log you in. Thanks for being patient.</p>
       </div>
-    </div>
+    </motion.div>
+    
   );
 }
 

@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function NotFound() {
   return (
-    <div className="h-screen">
-      <h1> 404 Bro, you're lost</h1>
-      <ul className="flex gap-4">
+    <motion.div
+      className="h-screen bg-black text-white "
+    //   initial={{ opacity: 0}}
+    // animate={{ opacity: 1}}
+    // exit={{ opacity: 0 }}
+    >
+      <h1 className="mb-4 text-center"> 404 Bro, you're lost</h1>
+      <ul className="flex gap-4 items-center flex-wrap h-auto justify-center">
         <li className="bg-blue-400 p-2 rounded-md">
           <Link to="/">
             <h1>Home</h1>
@@ -27,7 +33,7 @@ function NotFound() {
           </Link>
         </li>
       </ul>
-    </div>
+    </motion.div>
   );
 }
 
