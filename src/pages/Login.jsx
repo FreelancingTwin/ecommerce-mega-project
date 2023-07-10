@@ -5,7 +5,6 @@ import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addJwt } from "../actions/authActions";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import {motion} from 'framer-motion'
 
 
 function Login() {

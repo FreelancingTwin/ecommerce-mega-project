@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { motion } from "framer-motion";
 function Signup() {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
