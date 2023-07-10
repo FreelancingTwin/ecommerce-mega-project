@@ -3,7 +3,7 @@ function Footer() {
   return (
     <div className="h-max bg-black text-white flex flex-wrap justify-between p-4 border-t border-white">
       <div>
-        <h1>Thunder Tech</h1>
+        <h1>ElectraMart</h1>
         <h1>Pillar no 16</h1>
         <h1>Road no. 323232</h1>
         <h1>Hyderabad</h1>

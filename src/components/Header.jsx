@@ -13,7 +13,7 @@ function Header() {
       <div className="flex justify-center">
 
       <img src="/vite.svg" alt="logo" className="max-h-fill"/>
-      <h1 className="ml-1 italic flex items-center font-black text-xl text-white rounded-md">ThunderTech</h1>
+      <h1 className="ml-1 italic flex items-center font-black text-xl text-white rounded-md">ElectraMart</h1>
       </div>
       </Link>
      {authState && authState.length !== 0 ? (<ul className="flex justify-between items-center gap-4 py-4">
