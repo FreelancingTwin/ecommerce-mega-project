@@ -68,7 +68,7 @@ function Login() {
 
   return (
 
-    <motion.div className="min-h-[70vh] max-w-screen p-4 flex items-center justify-center flex-col bg-black text-balck" 
+    <div className="min-h-[70vh] max-w-screen p-4 flex items-center justify-center flex-col bg-black text-balck" 
     // initial={{ opacity: 0}}
     // animate={{ opacity: 1}}
     // exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ function Login() {
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(e)}
         className="w-fit flex flex-col justify-center items-center"
       >
         <input
@@ -109,15 +109,15 @@ function Login() {
         </button>
       </form>
 
-      {/* <div className="text-start mt-2">
+      <div className="text-start mt-2">
         <h1>Signup doesn't work? try login:</h1>
         <p>email: g@g.com</p>
         <p>password: qwertyuiop</p>
-      </div> */}
+      </div>
       <div>
         <p className="text-white text-sm italic">*Free server by render, sometimes takes upto 15 seconds to fire up for the first time and log you in. Thanks for being patient.</p>
       </div>
-    </motion.div>
+    </div>
     
   );
 }

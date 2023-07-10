@@ -25,17 +25,6 @@ function Signup() {
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
-      // const data = await JSON.stringify({...resp})
-      // console.log("data", resp.data);
-      // console.log("jwt", resp.data.jwt);
-      // const jwtToken = resp.data.jwt;
-      // console.log("trying to set cookie...");
-      // Cookies.set("bond", "james bond");
-      // await Cookies.set("jwt", jwtToken, {secure: true, expires: 7});
-      // console.log("Cookies set!, navigating you to homepage");
-
-      // window.location.href = "/";
-      // const navigate = useNavigate()
       return navigate("/login");
     } catch (error) {
       console.log(error.response.data.errors);
@@ -54,7 +43,7 @@ function Signup() {
     }
   }
   return (
-    <motion.div
+    <div
     // initial={{ opacity: 0}}
     // animate={{ opacity: 1}}
     // exit={{ opacity: 0 }}
@@ -93,11 +82,11 @@ function Signup() {
           {signupButtonText}
         </button>
       </form>
-      {/* <div className="text-start ">
+      <div className="text-start ">
         <h1>Signup doesn't work? try login:</h1>
         <p>email: g@g.com</p>
         <p>password: qwertyuiop</p>
-      </div> */}
+      </div>
 
       <div>
         <p className="text-white italic text-sm mt-3">
@@ -105,7 +94,7 @@ function Signup() {
           the first time and Sign you up. Thanks for being patient.
         </p>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

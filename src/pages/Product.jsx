@@ -39,33 +39,25 @@ function ProductDetails() {
   let product =
     productsObj && productsObj.length !== 0 ? productsObj.products.filter(p => p.id === Number(productId)) : null;
 
-  // product && console.log("PRODUCT", product);
-
   if (!product) {
     return <div>Product not found.</div>;
   }
 
   return (
-    <motion.div
-    // initial={{ opacity: 0}}
-    // animate={{ opacity: 1}}
-    // exit={{ opacity: 0 }}
+    <div
      className="bg-black text-white"
      
      >
       <h1 className="p-4">Product Details:</h1>
       {product[0].images && (
        <Swiper
-       // install Swiper modules
+   
        modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
        autoHeight={true}
        spaceBetween={50}
        slidesPerView={1}
        navigation
-    //    pagination={{ clickable: true, type: 'fraction' 
-    //  }}
        loop={true}
-      //  scrollbar={{ draggable: true }}
        onSwiper={(swiper) => console.log(swiper)}
        onSlideChange={() => console.log('slide change')}
        className=""
@@ -110,7 +102,7 @@ function ProductDetails() {
       </button>
         </div>
       
-    </motion.div>
+    </div>
   );
 }
 

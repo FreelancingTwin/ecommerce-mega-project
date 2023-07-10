@@ -5,14 +5,11 @@ import Cookies from "js-cookie";
 import {useDispatch, useSelector} from 'react-redux'
 function Header() {
   const dispatch = useDispatch()
-  // const authState = useSelector(state => state.auth)
   const authState = Cookies.get('jwt')
-  // console.log("AUTHSTATE",authState)
   return (
     <nav className="bg-black w-screen flex justify-between items-center p-4 ">
       <Link to="/">
 
-      {/* <h1 className="text-2xl">Header</h1> */}
       <div className="flex justify-center">
 
       <img src="/vite.svg" alt="logo" className="max-h-fill"/>
@@ -20,9 +17,8 @@ function Header() {
       </div>
       </Link>
      {authState.length > 0 ? (<ul className="flex justify-between items-center gap-4 py-4">
-        {/* <li className="bg-blue-500 py-1 px-2 rounded-md"> <Link to="/">Home</Link></li> */}
         <li className="py-1 rounded-md flex align-center text-3xl text-white">
-          {" "}
+          
           <Link to="/cart">
             <AiOutlineShoppingCart className="rounded-md hover:bg-orange-300 hover:text-black hover:p-1 transition-all duration-300"/>
           </Link>

@@ -4,11 +4,8 @@ import { motion } from "framer-motion";
 
 function NotFound() {
   return (
-    <motion.div
+    <div
       className="h-screen bg-black text-white "
-    //   initial={{ opacity: 0}}
-    // animate={{ opacity: 1}}
-    // exit={{ opacity: 0 }}
     >
       <h1 className="mb-4 text-center"> 404 Bro, you're lost</h1>
       <ul className="flex gap-4 items-center flex-wrap h-auto justify-center">
@@ -33,7 +30,7 @@ function NotFound() {
           </Link>
         </li>
       </ul>
-    </motion.div>
+    </div>
   );
 }
 

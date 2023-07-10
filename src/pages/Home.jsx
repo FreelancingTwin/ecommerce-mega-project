@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../actions/productsActions";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-import { addToCart } from "../actions/cartActions";
-import { motion } from "framer-motion";
+
+
+
 function Home() {
   const dispatch = useDispatch();
   const productsObject = useSelector(state => state.products);
@@ -13,13 +14,8 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <motion.div
-      className="p-4 bg-black text-white min-h-screen"
-    //   initial={{ opacity: 0}}
-    // animate={{ opacity: 1}}
-    // exit={{ opacity: 0 }}
-    >
-      {/* <h1 className="text-xl mb-4">Homepage</h1> */}
+    <div
+      className="p-4 bg-black text-white min-h-screen">
       <img
         src="/sale2.png"
         alt="sale"
@@ -39,19 +35,13 @@ function Home() {
                   className="object-cover rounded-lg"
                 />
               </Link>
-              {/* <button
-                onClick={() => dispatch(addToCart(product))}
-                className="absolute bottom-4 right-4 bg-yellow-500 p-2 rounded-full text-black-400"
-              >
-                +
-              </button> */}
             </div>
           ))
         ) : (
           <p>loadig products...</p>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
