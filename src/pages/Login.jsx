@@ -84,7 +84,7 @@ function Login() {
       </div>
 
       <form
-        onSubmit={handleSubmit(e)}
+        onSubmit={(e)=>handleSubmit(e)}
         className="w-fit flex flex-col justify-center items-center"
       >
         <input
