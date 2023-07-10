@@ -11,7 +11,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import {Link} from 'react-router-dom'
-import {motion} from 'framer-motion'
 
 
 function ProductDetails() {

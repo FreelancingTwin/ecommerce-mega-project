@@ -15,7 +15,7 @@ function Login() {
 
   // const authState = useSelector(state => state.auth);
   const authState = Cookies.get('jwt')
-  console.log('AUTHSTATE', authState)
+  // console.log('AUTHSTATE', authState)
 
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -41,7 +41,7 @@ function Login() {
 
       const jwtToken = response.data.jwt;
       dispatch(addJwt(jwtToken));
-      console.log("LOGIN");
+      // console.log("LOGIN");
       Cookies.set("jwt", jwtToken, { expires: 7, secure: true});
 
       // console.log("JWT:", jwtToken);

@@ -16,7 +16,7 @@ function Header() {
       <h1 className="ml-1 italic flex items-center font-black text-xl text-white rounded-md">ThunderTech</h1>
       </div>
       </Link>
-     {authState.length > 0 ? (<ul className="flex justify-between items-center gap-4 py-4">
+     {authState && authState.length !== 0 ? (<ul className="flex justify-between items-center gap-4 py-4">
         <li className="py-1 rounded-md flex align-center text-3xl text-white">
           
           <Link to="/cart">
@@ -29,7 +29,7 @@ function Header() {
             <LogoutButton/>
             
           </li>
-     </ul>) : <></>}
+     </ul>) : <div></div>}
     </nav>
   );
 }
